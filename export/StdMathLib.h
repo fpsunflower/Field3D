@@ -44,7 +44,6 @@
 #include <OpenEXR/ImathColor.h>
 #include <OpenEXR/ImathMatrix.h>
 #include <OpenEXR/ImathVec.h>
-#include <OpenEXR/ImathRoots.h>
 #include <OpenEXR/ImathMatrixAlgo.h>
 #include <OpenEXR/ImathRandom.h> 
 
