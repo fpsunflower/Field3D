@@ -77,7 +77,7 @@ FIELD3D_NAMESPACE_OPEN
 #define DEFINE_MATCH_RTTI_CALL \
   bool matchRTTI(const std::string &typenameStr) \
   { \
-    if (typenameStr == typeid(class_type).name()) { \
+    if (typenameStr == this->className()) { \
       return true; \
     } \
     return base::matchRTTI(typenameStr); \
@@ -185,11 +185,11 @@ public:
   //! This function is only implemented by concrete classes and triggers
   //! the actual RTTI check through matchRTTI();
   virtual bool checkRTTI(const std::string &typenameStr) = 0;
-  
+
   //! Performs a check to see if the given typename string matches this class'
   //! This needs to be implemented in -all- subclasses, even abstract ones.
   bool matchRTTI(const std::string &typenameStr)
-  { return typenameStr == typeid(*this).name(); }
+  { return typenameStr == className(); }
 
   //! \}
 
@@ -408,7 +408,7 @@ field_dynamic_cast(FieldBase::Ptr field)
 {
   if (!field) 
     return NULL;
-  std::string tgtTypeString = typeid(Field_T).name();
+  std::string tgtTypeString = field->className();
   if (field->checkRTTI(tgtTypeString)) {
     return static_cast<Field_T*>(field.get());
   } else {

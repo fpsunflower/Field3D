@@ -226,7 +226,7 @@ bool MatrixFieldMapping::isIdentical(FieldMapping::Ptr other,
     return false;
   } else {
     MatrixFieldMapping::Ptr mm = 
-      dynamic_pointer_cast<MatrixFieldMapping>(other);
+      static_pointer_cast<MatrixFieldMapping>(other);
     if (mm) {
       // first preserve the same test as before:
       if (mm->m_lsToWs.equalWithRelError(m_lsToWs, tolerance) && 
